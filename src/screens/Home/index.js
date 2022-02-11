@@ -1,6 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {Text, View, PermissionsAndroid} from 'react-native';
-import {Container, ContactRow, ContactAvatar} from '../../components/';
+import {
+  Container,
+  ContactRow,
+  ContactAvatar,
+  SearchBar,
+} from '../../components/';
 import Contacts from 'react-native-contacts';
 import {styles} from './styles';
 
@@ -44,6 +49,7 @@ export const Home = () => {
     <Container>
       <ContactRow name={contacts.length > 0 && contacts[0].displayName} />
       <ContactAvatar name={contacts.length > 0 && contacts[0].displayName} />
+      <SearchBar />
     </Container>
   );
 };
