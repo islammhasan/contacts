@@ -7,7 +7,7 @@ import {strings} from '../../strings';
 export const ContactRow = props => {
   const {name, img, checked} = props;
   return (
-    <TouchableOpacity {...props} style={styles.container}>
+    <TouchableOpacity {...props} activeOpacity={0.8} style={styles.container}>
       <View style={styles.innerContainer}>
         <View style={styles.imgContainer}>
           <Image

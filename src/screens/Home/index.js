@@ -1,9 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {Text, View, PermissionsAndroid} from 'react-native';
-import {Container} from '../../components/Container';
+import {Container, ContactRow, ContactAvatar} from '../../components/';
 import Contacts from 'react-native-contacts';
 import {styles} from './styles';
-import {ContactRow} from '../../components/';
 
 export const Home = () => {
   const [contacts, setContacts] = useState([]);
@@ -43,10 +42,8 @@ export const Home = () => {
 
   return (
     <Container>
-      <Text style={styles.text}>
-        {contacts.length > 0 ? contacts[0].displayName : 'Just a text'}
-      </Text>
-      <ContactRow />
+      <ContactRow name={contacts.length > 0 && contacts[0].displayName} />
+      <ContactAvatar name={contacts.length > 0 && contacts[0].displayName} />
     </Container>
   );
 };
