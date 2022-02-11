@@ -3,6 +3,7 @@ import {Text, View, PermissionsAndroid} from 'react-native';
 import {Container} from '../../components/Container';
 import Contacts from 'react-native-contacts';
 import {styles} from './styles';
+import {ContactRow} from '../../components/';
 
 export const Home = () => {
   const [contacts, setContacts] = useState([]);
@@ -45,6 +46,7 @@ export const Home = () => {
       <Text style={styles.text}>
         {contacts.length > 0 ? contacts[0].displayName : 'Just a text'}
       </Text>
+      <ContactRow />
     </Container>
   );
 };
