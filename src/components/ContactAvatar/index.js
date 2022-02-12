@@ -12,8 +12,8 @@ export const ContactAvatar = props => {
       <View style={styles.imgContainer}>
         <Image
           resizeMode="contain"
-          style={styles.img}
-          source={img || images.avatar}
+          style={[styles.img, img && styles.fullImage]}
+          source={img ? {uri: img} : images.avatar}
         />
       </View>
       <Text numberOfLines={1} style={styles.name}>
@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: colors.black,
     width: 60,
+    textAlign: 'center',
   },
   imgContainer: {
     width: 60,
@@ -49,9 +50,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 5,
+    overflow: 'hidden',
   },
   img: {
     width: 30,
+  },
+  fullImage: {
+    width: 60,
+    height: 60,
   },
   closeContainer: {
     width: 25,

@@ -1,10 +1,11 @@
 import React from 'react';
-import {Text, View, Image, TextInput, StyleSheet} from 'react-native';
+import {View, Image, TextInput, StyleSheet} from 'react-native';
 import {colors, images} from '../../assets/';
 
 export const SearchBar = props => {
+  const {containerStyle} = props;
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, containerStyle]}>
       <Image resizeMode="contain" style={styles.icon} source={images.search} />
       <TextInput
         placeholderTextColor={colors.gray}
