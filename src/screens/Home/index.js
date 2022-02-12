@@ -5,7 +5,6 @@ import {
   ContactRow,
   ContactAvatar,
   SearchBar,
-  PrimaryInput,
 } from '../../components/';
 import Contacts from 'react-native-contacts';
 import {styles} from './styles';
