@@ -1,8 +1,8 @@
 import React from 'react';
-import {Home, Login} from './src/screens/';
+import {Home, Login, Signup} from './src/screens/';
 
 const App = () => {
-  return <Login />;
+  return <Signup />;
 };
 
 export default App;

@@ -4,7 +4,7 @@ import {Container, PrimaryButton, PrimaryInput} from '../../components';
 import {strings} from '../../strings';
 import {styles} from './styles';
 
-export const Login = () => {
+export const Signup = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   return (
@@ -19,18 +19,18 @@ export const Login = () => {
           placeholder={strings.password}
         />
         <PrimaryButton
-          onPress={() => alert('Login pressed!')}
+          onPress={() => alert('Sign up pressed!')}
           style={styles.btnStyle}
-          title={strings.login.toUpperCase()}
+          title={strings.signup.toUpperCase()}
         />
         <TouchableOpacity
-          style={styles.signupContainer}
-          onPress={() => alert('Sign up pressed!')}
+          style={styles.loginContainer}
+          onPress={() => alert('Login pressed!')}
           activeOpacity={0.8}>
-          <Text numberOfLines={1} style={styles.noAccTxt}>
-            {strings.noAccTxt + ' '}
-            <Text numberOfLines={1} style={styles.signupTxt}>
-              {strings.signupTxt}
+          <Text numberOfLines={1} style={styles.haveAcc}>
+            {strings.haveAcc + ' '}
+            <Text numberOfLines={1} style={styles.loginTxt}>
+              {strings.loginTxt}
             </Text>
           </Text>
         </TouchableOpacity>
