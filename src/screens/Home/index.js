@@ -1,15 +1,26 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useLayoutEffect} from 'react';
 import {View, FlatList, PermissionsAndroid} from 'react-native';
 import {
   Container,
   ContactRow,
   ContactAvatar,
   SearchBar,
+  HeaderIcon,
 } from '../../components/';
 import Contacts from 'react-native-contacts';
 import {styles} from './styles';
 
-export const Home = () => {
+export const Home = ({navigation}) => {
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: FavIcon,
+    });
+  });
+
+  const FavIcon = () => {
+    return <HeaderIcon style={styles.headerIconStyle} />;
+  };
+
   const [contacts, setContacts] = useState([]);
   const [selectedContacts, setSelectedContact] = useState([]);
 

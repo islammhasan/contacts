@@ -23,4 +23,7 @@ export const styles = StyleSheet.create({
   horizontalListSeparator: {
     width: 10,
   },
+  headerIconStyle: {
+    marginEnd: 10,
+  },
 });
