@@ -19,12 +19,11 @@ export const PrimaryButton = props => {
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 30,
+    width: 300,
     height: 50,
     backgroundColor: colors.blue,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 3,
     paddingHorizontal: 20,
   },
   titleStyle: {
