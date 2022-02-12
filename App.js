@@ -1,8 +1,8 @@
 import React from 'react';
-import {Home, Login, Signup} from './src/screens/';
+import {NavContainer} from './src/navigation';
 
 const App = () => {
-  return <Signup />;
+  return <NavContainer />;
 };
 
 export default App;
