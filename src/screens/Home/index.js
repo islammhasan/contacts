@@ -1,16 +1,26 @@
-import React, {useEffect, useState, useLayoutEffect} from 'react';
-import {View, FlatList, PermissionsAndroid} from 'react-native';
+import React, {useState, useLayoutEffect} from 'react';
+import {View, FlatList} from 'react-native';
 import {
   Container,
   ContactRow,
   ContactAvatar,
   SearchBar,
   HeaderIcon,
+  PrimaryButton,
 } from '../../components/';
-import Contacts from 'react-native-contacts';
 import {styles} from './styles';
+import {strings} from '../../strings';
+import {useDispatch, useSelector} from 'react-redux';
+import {useContacts} from '../../redux/main';
 
 export const Home = ({navigation}) => {
+  const contacts = useSelector(state => state.main.contacts);
+  const [data, setData] = useState(contacts);
+  const [selectedContacts, setSelectedContact] = useState([]);
+  const dispatch = useDispatch();
+  const {addToFav} = useContacts();
+  console.log('contacts', contacts.length);
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: FavIcon,
@@ -21,44 +31,17 @@ export const Home = ({navigation}) => {
     return <HeaderIcon style={styles.headerIconStyle} />;
   };
 
-  const [contacts, setContacts] = useState([]);
-  const [selectedContacts, setSelectedContact] = useState([]);
-
-  useEffect(() => {
-    getContacts();
-  }, []);
-
-  const getContacts = async () => {
-    try {
-      const granted = await PermissionsAndroid.request(
-        PermissionsAndroid.PERMISSIONS.READ_CONTACTS,
-        {
-          title: 'Contacts',
-          message: 'This app would like to view your contacts.',
-          buttonNeutral: 'Ask Me Later',
-          buttonNegative: 'Cancel',
-          buttonPositive: 'Please accept bare mortal',
-        },
-      );
-      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-        console.log('Permission granted');
-        try {
-          await Contacts.getAll().then(contacts => {
-            setContacts(contacts);
-          });
-        } catch (error) {
-          console.log('error===>', error);
-        }
-      } else {
-        console.log('Permission denied');
-      }
-    } catch (error) {
-      console.log('caught error', error);
-    }
+  const updateFav = items => {
+    dispatch(addToFav(items));
+    setSelectedContact([]);
+    data.map(item => {
+      item.selected = false;
+    });
+    alert('Selected contacts has been added to your favorites');
   };
 
   const updateList = itemSelected => {
-    const newData = contacts.map(item => {
+    const newData = data.map(item => {
       if (item.recordID == itemSelected.recordID) {
         return {
           ...item,
@@ -71,7 +54,7 @@ export const Home = ({navigation}) => {
         };
       }
     });
-    setContacts(newData);
+    setData(newData);
     const selectedData = newData.filter(d => d.selected == true);
     setSelectedContact(selectedData);
   };
@@ -80,8 +63,8 @@ export const Home = ({navigation}) => {
     return (
       <ContactRow
         name={item?.displayName}
-        img={item?.hasThumbnail && item.thumbnailPath}
-        phone={item?.phoneNumbers[0].number}
+        img={item?.hasThumbnail && item?.thumbnailPath}
+        phone={item?.phoneNumbers[0]?.number}
         checked={item?.selected}
         onPress={() => updateList(item)}
       />
@@ -123,13 +106,20 @@ export const Home = ({navigation}) => {
         </View>
       )}
       <FlatList
-        data={contacts}
+        data={data}
         contentContainerStyle={styles.contactsListStyle}
         showsVerticalScrollIndicator={false}
         keyExtractor={item => item.recordID}
         renderItem={renderItem}
         ItemSeparatorComponent={listSeparator}
       />
+      {selectedContacts.length > 0 && (
+        <PrimaryButton
+          style={styles.addtofavBtn}
+          title={strings.addtofav.toUpperCase()}
+          onPress={() => updateFav(selectedContacts)}
+        />
+      )}
     </Container>
   );
 };

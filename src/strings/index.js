@@ -11,4 +11,5 @@ export const strings = {
   password: 'Passowrd',
   login: 'Login',
   signup: 'Sign Up',
+  addtofav: 'Add to favorites',
 };

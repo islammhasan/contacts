@@ -6,7 +6,7 @@ export const styles = StyleSheet.create({
     marginVertical: 10,
   },
   contactsListStyle: {
-    marginVertical: 10,
+    paddingVertical: 10,
     marginHorizontal: 10,
   },
   topListContainer: {
@@ -25,5 +25,11 @@ export const styles = StyleSheet.create({
   },
   headerIconStyle: {
     marginEnd: 10,
+  },
+  addtofavBtn: {
+    alignSelf: 'center',
+    position: 'absolute',
+    bottom: 10,
+    borderRadius: 5,
   },
 });
