@@ -28,7 +28,12 @@ export const Home = ({navigation}) => {
   });
 
   const FavIcon = () => {
-    return <HeaderIcon style={styles.headerIconStyle} />;
+    return (
+      <HeaderIcon
+        onPress={() => navigation.navigate('Favorites')}
+        style={styles.headerIconStyle}
+      />
+    );
   };
 
   const updateFav = items => {

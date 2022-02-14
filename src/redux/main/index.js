@@ -40,9 +40,9 @@ const initialState = {
 export default (state = initialState, {type, payload}) => {
   switch (type) {
     case types.GET_CONTACTS_SUCCESS:
-      return {...state, contacts: [...state.contacts, ...payload]};
+      return {...state, contacts: payload};
     case types.ADD_TO_FAV_SUCCESS:
-      return {...state, favorites: payload};
+      return {...state, favorites: [...state.favorites, ...payload]};
     case types.GET_CONTACTS_FAILED:
     case types.ADD_TO_FAV_FAILED:
       return initialState;

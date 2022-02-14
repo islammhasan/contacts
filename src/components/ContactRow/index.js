@@ -5,7 +5,7 @@ import {images} from '../../assets/images';
 import {strings} from '../../strings';
 
 export const ContactRow = props => {
-  const {name, img, checked, phone} = props;
+  const {name, img, checked, phone, isFav} = props;
   return (
     <TouchableOpacity {...props} activeOpacity={0.8} style={styles.container}>
       <View style={styles.innerContainer}>
@@ -25,7 +25,7 @@ export const ContactRow = props => {
           </Text>
         </View>
       </View>
-      <View style={[styles.checker, checked && styles.checked]} />
+      {!isFav && <View style={[styles.checker, checked && styles.checked]} />}
     </TouchableOpacity>
   );
 };

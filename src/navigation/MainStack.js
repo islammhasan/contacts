@@ -1,6 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Home, Login, Signup} from '../screens';
+import {Favorites, Home, Login, Signup} from '../screens';
 
 const Stack = createStackNavigator();
 
@@ -22,6 +22,7 @@ export const MainStack = () => {
         component={Signup}
       />
       <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Favorites" component={Favorites} />
     </Stack.Navigator>
   );
 };
