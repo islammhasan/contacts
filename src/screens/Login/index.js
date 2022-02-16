@@ -10,17 +10,17 @@ import {strings} from '../../strings';
 import {styles} from './styles';
 import Contacts from 'react-native-contacts';
 import {useDispatch} from 'react-redux';
-import {useContacts} from '../../redux/main';
+import {useContacts, useReg} from '../../redux/main';
 
 export const Login = ({navigation}) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   useEffect(() => {
     loadContacts();
   }, []);
 
   const {getContacts} = useContacts();
+  const {signIn} = useReg();
   const dispatch = useDispatch();
 
   const loadContacts = async () => {
@@ -53,23 +53,21 @@ export const Login = ({navigation}) => {
   };
 
   const login = () => {
-    if (username != '' && password != '') {
-      navigation.navigate('Home');
+    if (phoneNumber != '') {
+      dispatch(signIn(phoneNumber));
+      navigation.navigate('Confirm');
     } else {
       alert('Please fill all fields!');
     }
   };
+
   return (
     <Container>
       <ScrollView contentContainerStyle={styles.scrollViewStyle}>
         <PrimaryInput
-          onChangeText={username => setUsername(username)}
-          placeholder={strings.username}
-        />
-        <PrimaryInput
-          secureTextEntry
-          onChangeText={password => setPassword(password)}
-          placeholder={strings.password}
+          onChangeText={phoneNumber => setPhoneNumber(phoneNumber)}
+          placeholder={strings.phoneNo}
+          keyboardType={'phone-pad'}
         />
         <PrimaryButton
           onPress={login}

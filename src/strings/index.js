@@ -8,6 +8,7 @@ export const strings = {
   signupTxt: 'Sign up!',
   loginTxt: 'Login!',
   username: 'Username',
+  phoneNo: 'Phone Number',
   password: 'Passowrd',
   login: 'Login',
   signup: 'Sign Up',

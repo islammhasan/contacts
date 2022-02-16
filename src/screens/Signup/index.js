@@ -1,15 +1,21 @@
 import React, {useState} from 'react';
 import {ScrollView, Text, TouchableOpacity} from 'react-native';
+import {useDispatch} from 'react-redux';
 import {Container, PrimaryButton, PrimaryInput} from '../../components';
+import {useReg} from '../../redux/main';
 import {strings} from '../../strings';
 import {styles} from './styles';
 
 export const Signup = ({navigation}) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+
+  const {signIn} = useReg();
+  const dispatch = useDispatch();
+
   const signup = () => {
-    if (username != '' && password != '') {
-      navigation.navigate('Home');
+    if (phoneNumber != '') {
+      dispatch(signIn(phoneNumber));
+      navigation.navigate('Confirm');
     } else {
       alert('Please fill all fields!');
     }
@@ -18,13 +24,9 @@ export const Signup = ({navigation}) => {
     <Container>
       <ScrollView contentContainerStyle={styles.scrollViewStyle}>
         <PrimaryInput
-          onChangeText={username => setUsername(username)}
-          placeholder={strings.username}
-        />
-        <PrimaryInput
-          secureTextEntry
-          onChangeText={password => setPassword(password)}
-          placeholder={strings.password}
+          onChangeText={phoneNumber => setPhoneNumber(phoneNumber)}
+          placeholder={strings.phoneNo}
+          keyboardType={'phone-pad'}
         />
         <PrimaryButton
           onPress={signup}

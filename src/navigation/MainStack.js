@@ -1,6 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Favorites, Home, Login, Signup} from '../screens';
+import {Favorites, Home} from '../screens';
 
 const Stack = createStackNavigator();
 
@@ -11,16 +11,6 @@ export const MainStack = () => {
       screenOptions={{
         headerShown: true,
       }}>
-      <Stack.Screen
-        options={{headerShown: false}}
-        name="Login"
-        component={Login}
-      />
-      <Stack.Screen
-        options={{headerShown: false}}
-        name="Signup"
-        component={Signup}
-      />
       <Stack.Screen name="Home" component={Home} />
       <Stack.Screen name="Favorites" component={Favorites} />
     </Stack.Navigator>
