@@ -20,9 +20,11 @@ export const ContactRow = props => {
           <Text numberOfLines={1} style={styles.nameStyle}>
             {name || strings.defaultName}
           </Text>
-          <Text numberOfLines={1} style={styles.phoneStyle}>
-            {phone || strings.defaultNumber}
-          </Text>
+          {phone && (
+            <Text numberOfLines={1} style={styles.phoneStyle}>
+              {phone || strings.defaultNumber}
+            </Text>
+          )}
         </View>
       </View>
       {!isFav && <View style={[styles.checker, checked && styles.checked]} />}

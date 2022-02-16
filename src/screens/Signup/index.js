@@ -17,7 +17,7 @@ export const Signup = ({navigation}) => {
       dispatch(signIn(phoneNumber));
       navigation.navigate('Confirm');
     } else {
-      alert('Please fill all fields!');
+      alert('Enter your phone number, please!');
     }
   };
   return (

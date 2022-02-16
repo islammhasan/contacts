@@ -36,34 +36,6 @@ export const Home = ({navigation}) => {
     );
   };
 
-  const updateFav = items => {
-    dispatch(addToFav(items));
-    setSelectedContact([]);
-    data.map(item => {
-      item.selected = false;
-    });
-    alert('Selected contacts has been added to your favorites');
-  };
-
-  const updateList = itemSelected => {
-    const newData = data.map(item => {
-      if (item.recordID == itemSelected.recordID) {
-        return {
-          ...item,
-          selected: !item.selected,
-        };
-      } else {
-        return {
-          ...item,
-          selected: item.selected,
-        };
-      }
-    });
-    setData(newData);
-    const selectedData = newData.filter(d => d.selected == true);
-    setSelectedContact(selectedData);
-  };
-
   const renderItem = ({item}) => {
     return (
       <ContactRow
@@ -92,6 +64,34 @@ export const Home = ({navigation}) => {
 
   const horizontalListSeparator = () => {
     return <View style={styles.horizontalListSeparator} />;
+  };
+
+  const updateFav = items => {
+    dispatch(addToFav(items));
+    setSelectedContact([]);
+    data.map(item => {
+      item.selected = false;
+    });
+    alert('Selected contacts has been added to your favorites');
+  };
+
+  const updateList = itemSelected => {
+    const newData = data.map(item => {
+      if (item.recordID == itemSelected.recordID) {
+        return {
+          ...item,
+          selected: !item.selected,
+        };
+      } else {
+        return {
+          ...item,
+          selected: item.selected,
+        };
+      }
+    });
+    setData(newData);
+    const selectedData = newData.filter(d => d.selected == true);
+    setSelectedContact(selectedData);
   };
 
   return (
